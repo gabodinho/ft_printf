@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 10:49:36 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/20 18:02:38 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/06/23 15:32:01 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -39,7 +39,7 @@ int main(void)
 
 	printf("%d\n", test_int);
 //	printf("%s\n", test_char);		format specifies type 'char *' but the argument has type 'char'
-//	printf("%s\n", ptr);		format specifies type 'char *' but the argument has type 'void *'
+//	printf("%s\n", ptr);		format specifies type 'char *' but the argument has type 'void 
 	printf("%x\n", test_int);
 	printf("%p\n", str);
 	printf("hello", test_int);
@@ -47,7 +47,7 @@ int main(void)
 	printf("using ptr conversin: %p\n", &test_int);
 	printf("using uintptr_t: %#lx\n", int_ptr);
 	printf("this is a test: %# 0#-00+5.4d\nds weiter gehts im text : %d\n %d", test_int, str);
-	printf("this is another test: %%%#.1d0#-00+5.4d\nds weiter gehts im text : %d\n %d", test_int, str);
+	printf("this is another test: %%%#.1d0#-00+5.4d\nds weiter gehts im text : %d\n %d END", test_int, str);
 	return (0) ;
 }
 
