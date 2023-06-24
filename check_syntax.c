@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:35:15 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/23 16:19:46 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/06/24 19:01:52 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int	ft_isdigit(int c)
 		return (0);
 }
 
-int	check_syntax(const char *ptr)
+char	check_syntax(const char *ptr)
 {
 	if (*ptr == '%')
-		return (1);
+		return ('%');
 	while (ft_strchr("#0+- ", *ptr))
 		ptr++;
 	while (ft_isdigit(*ptr))
@@ -51,7 +51,7 @@ int	check_syntax(const char *ptr)
 			ptr++;
 	}
 	if (ft_strchr("cspdiuxX", *ptr))
-		return (1);
+		return (*ptr);
 	else
 		return (0);
 }
@@ -61,7 +61,7 @@ int	check_syntax(const char *ptr)
 int main(void)
 {
 	char str[] = "#++--#0 345.34545s4%this";
-	printf("result is: %d\n", check_syntax(str));
+	printf("result is: %c\n", check_syntax(str));
 	return (0);
 }
 

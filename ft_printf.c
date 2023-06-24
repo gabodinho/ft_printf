@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:35:15 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/24 00:58:16 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/06/24 21:26:59 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_printf(const char *str, ...)
 			if (check_syntax(str + 1))
 			{
 				str++;
-				count += print_arg(ap, get_format_spec(str), str);
+				count += print_arg(ap, check_syntax(str), str);
 				set_ptr(str);		// <-- yet to be defined 
 			}
 			else
