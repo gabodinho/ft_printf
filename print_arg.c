@@ -6,12 +6,12 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 00:11:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/24 21:26:42 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/06/27 02:21:21 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-
+#include "libftprintf.h"
+#include "libft.h"
 
 char	*prep_str(size_t size, char	fill)
 {
@@ -32,7 +32,7 @@ char	*prep_str(size_t size, char	fill)
 }
 
 
-int	print_char(va_list ap, t_format *fm, const char *str)
+int	print_char(va_list ap, t_format *fm)
 {
 	unsigned char	arg;
 	char			*str;
@@ -50,7 +50,7 @@ int	print_char(va_list ap, t_format *fm, const char *str)
 	ft_putstr_fd(str, 1);
 	return (ft_strlen(str));
 }
-
+/*
 int	print_dec(va_list ap, const char *ptr)
 {
 	int		arg;
@@ -63,21 +63,22 @@ int	print_dec(va_list ap, const char *ptr)
 	len = ft_strlen(str);
 	if (							//		<--- hier weiter
 
-
+*/
+/*
 int	print_arg(va_list ap, t_format *fm, const char *str)
 {
 	if (fm -> format_spec == 'i' || fm -> format_spec == 'd')
-		return (print_dec(ap, fm, str));
+		return (print_dec(ap, fm));
 	if (fm -> format_spec == 'c')
-		return (print_char(ap, fm, str));
+		return (print_char(ap, fm));
 	if (fm -> format_spec == 's')
-		return (print_string(ap, fm, str));
+		return (print_string(ap, fm));
 	if (fm -> format_spec == 'p')
-		return (print_pointer(ap, fm, str));
+		return (print_pointer(ap, fm));
 	if (fm -> format_spec == 'u')
-		return (print_udec(ap, fm, str));
+		return (print_udec(ap, fm));
 	if (fm -> format_spec == 'x' || fm -> format_spec == 'X')
-		return (print_hex(ap, fm, str));
+		return (print_hex(ap, fm));
 	if (fm -> format_spec == '%')
 	{
 		ft_putchar('%');
@@ -86,3 +87,4 @@ int	print_arg(va_list ap, t_format *fm, const char *str)
 	else
 		return (0);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:35:15 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/24 21:27:02 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/06/27 00:24:34 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ typedef struct s_format
 		char	format_spec;
 		int		width;
 		int		precision;
-		int		alter_f;
-		char	zerominus_f;
-		char	spaceplus_f;
+		int		alter;
+		char	zerominus;
+		char	spaceplus;
 		}       t_format;
 
 int     ft_isdigit(int c)
@@ -68,9 +68,9 @@ t_format	new_format(void)
 	new -> format_spec = 0;
 	new -> width = 0;
 	new -> precision = 0;
-	new -> alter_f = 0;
-	new -> zerominus_f = 0;
-	new -> spaceplus_f = 0;
+	new -> alter = 0;
+	new -> zerominus = 0;
+	new -> spaceplus = 0;
 	return (*new);
 }
 
@@ -103,21 +103,21 @@ void	get_format(const char *ptr, t_format *fm)
 	while (ft_strchr("#0- +", *ptr))
 	{
 		if (*ptr == '#')
-			fm -> alter_f = 1;
-		if (*ptr == '0' && fm -> zerominus_f == 0)
-			fm -> zerominus_f = '0';
+			fm -> alter = 1;
+		if (*ptr == '0' && fm -> zerominus == 0)
+			fm -> zerominus = '0';
 		if (*ptr == '-')
-			fm -> zerominus_f = '-';
-		if (*ptr == ' ' && fm -> spaceplus_f == 0)
-			fm -> spaceplus_f = ' ';
+			fm -> zerominus = '-';
+		if (*ptr == ' ' && fm -> spaceplus == 0)
+			fm -> spaceplus = ' ';
 		if (*ptr == '+')
-			fm -> spaceplus_f = '+';
+			fm -> spaceplus = '+';
 		ptr++;
 	}
 	get_formatII(ptr, fm);
 	return ;
 }
-
+/*
 #include <stdio.h>
 
 int main(void)
@@ -126,6 +126,6 @@ int main(void)
 	t_format fm = new_format();
 	get_format(str, &fm);
 	printf("flags are: \"%d%0-10c%c\"; width is: %d; precision is %d;\nformat specifier is: %c", \
-	fm.alter_f, fm.zerominus_f, fm.spaceplus_f, fm.width, fm.precision, fm.format_spec);
+	fm.alter, fm.zerominus, fm.spaceplus, fm.width, fm.precision, fm.format_spec);
 	return (0);
-}
+}*/
