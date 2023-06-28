@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:35:15 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/27 00:24:34 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/06/27 23:19:25 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_format	new_format(void)
 	new = malloc(sizeof(t_format));
 	new -> format_spec = 0;
 	new -> width = 0;
-	new -> precision = 0;
+	new -> precision = -1;
 	new -> alter = 0;
 	new -> zerominus = 0;
 	new -> spaceplus = 0;

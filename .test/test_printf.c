@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 10:49:36 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/23 15:32:01 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/06/28 13:01:43 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -31,17 +31,29 @@ int test_printf(const char* str, ...)
 
 int main(void)
 {
-	char str[] = "test";
+	char str[] = "";
 	int test_int = 234;
 	char test_char = 't';
 	void *ptr;
 	uintptr_t int_ptr = (uintptr_t) &test_int;
 
 	printf("%d\n", test_int);
+	printf("% d\n", test_int);
+	printf("%.1d\n", test_int);
+	printf("%1d\n", test_int);
+	printf("%05d\n", test_int);
+	printf("%.5d\n", test_int);
+	printf("%7.5d\n", test_int);
+	printf("% 7.5d\n", test_int);
+	printf("% .5d\n", test_int);
+	printf("% .d\n", test_int);
+//	printf("%d\n", test_int);
+
 //	printf("%s\n", test_char);		format specifies type 'char *' but the argument has type 'char'
 //	printf("%s\n", ptr);		format specifies type 'char *' but the argument has type 'void 
 	printf("%x\n", test_int);
 	printf("%p\n", str);
+	printf("START%- sENDE\n", str);
 	printf("hello", test_int);
 	test_printf("this ", 3, 3, 4, 6);
 	printf("using ptr conversin: %p\n", &test_int);

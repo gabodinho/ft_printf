@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:44:13 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/27 02:21:48 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/06/27 23:26:27 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ char	check_syntax(const char *ptr);
 char	*prep_str(size_t size, char	fill);
 int	print_char(va_list ap, t_format *fm);
 int	print_dec(va_list ap, t_format *fm);
+int print_str(va_list ap, t_format *fm);
 
 #endif
