@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:44:13 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/27 23:26:27 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/06/30 18:44:01 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,13 @@ t_format	new_format(void);
 void	get_format(const char *ptr, t_format *fm);
 char	check_syntax(const char *ptr);
 char	*prep_str(size_t size, char	fill);
+int	free_len(char *str);
+int	get_size(t_format *fm, int arg, char flag);
+void    rdec2hex_str(char *dest, long arg, int flag);
 int	print_char(va_list ap, t_format *fm);
 int	print_dec(va_list ap, t_format *fm);
 int print_str(va_list ap, t_format *fm);
+int	print_dec(va_list ap, t_format *fm);
+int print_u(va_list ap, t_format *fm);
 
 #endif

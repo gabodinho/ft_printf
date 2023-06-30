@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 10:49:36 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/28 13:01:43 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/06/30 18:58:47 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -32,21 +32,30 @@ int test_printf(const char* str, ...)
 int main(void)
 {
 	char str[] = "";
-	int test_int = 234;
+	int test_int = 1234;
 	char test_char = 't';
 	void *ptr;
 	uintptr_t int_ptr = (uintptr_t) &test_int;
-
-	printf("%d\n", test_int);
-	printf("% d\n", test_int);
-	printf("%.1d\n", test_int);
-	printf("%1d\n", test_int);
-	printf("%05d\n", test_int);
-	printf("%.5d\n", test_int);
-	printf("%7.5d\n", test_int);
-	printf("% 7.5d\n", test_int);
-	printf("% .5d\n", test_int);
-	printf("% .d\n", test_int);
+	printf("1. %x\n", 1234);
+	printf("2. %#X\n", 16);
+	printf("3. %0# 7.7X\n", 31);
+	printf("4. %#3x\n", 31);
+/*
+	printf("1. %- 06.6d\n", -1234);
+	printf("2. %0 d\n", test_int);
+	printf("3. %.1d\n", test_int);
+	printf("4. %1d\n", test_int);
+	printf("5. %0 d\n", test_int);
+	printf("6. %0+5d\n", test_int);
+	printf("7. %+.5d\n", test_int);
+	printf("8. % 7.5d\n", test_int);
+	printf("9. % .5d\n", test_int);
+	printf("10. % .d\n", test_int);
+	printf("11. %07.5d\n", test_int);
+	printf("12. START%.dEND\n", 0);
+	printf("13. %0-7d\n", test_int);
+	printf("14. %u\n", -1234);
+*/	
 //	printf("%d\n", test_int);
 
 //	printf("%s\n", test_char);		format specifies type 'char *' but the argument has type 'char'

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 00:11:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/28 13:09:47 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:53:28 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 #include "libft.h"
 
 
-static size_t   ft_getdig(long n)
+// +++++++++++++++ diese file noch aufräumen! +++++++++++
+
+
+static size_t   get_dig(long n)
 {
         unsigned long   digits;
 
@@ -42,46 +45,27 @@ int	free_len(char *str)
 	return (len);
 }
 
-//			************* hier weiter *************
-fill_str(char *str, int arg, t_format *fm)
+int	get_size(t_format *fm, int arg, char flag)
 {
 	int	digits;
-	int start;
+	int	is_negativ;
 
-	digits = get_dig(arg);
-	start = 0;
-	if (fm -> zerominus != '-')
-		start = ft_strlen(str) - get_size(fm, arg, 1);
-	if (fm -> spaceplus == ' ' && arg > 0)
-		memcpy(str + start, " ", 1);
-// evtl muss die Generierung des ergebnisses mit in die itoa funktion integriert werden.
-// es gestaltet sich äußerst umständlich andauernd inrgendwelche Längen zu berücksichtigen
-// auf jeden fall fehlt noch eine Funktion, die die Zahl mit Nullen auffüllt, falls precision > digits ist. --> itoa bearbeiten.
-// new_itoa output soll sein string mit länge precision und negativem vorzeichen, wenn nötig
-
-int	get_size(t_format fm, int arg, char flag)
-{
-	int		digits;
-	int		prec;
-	int		width;
-
-	digits = get_dig(arg);
-	prec = fm -> precision;
-	width = fm -> width;
-	if (prec >= digits)
+	is_negativ = 0;
+	if (arg < 0)
 	{
-		digits = prec;
-		if (arg < 0 || fm -> spaceplus)
-			digits++;
+		is_negativ = 1;
+		arg = arg * -1;
 	}
-	if (fm -> spaceplus)
+	digits = get_dig(arg);
+	if (fm -> precision > digits)
+		digits = fm -> precision;
+	if (is_negativ || fm -> spaceplus)
 		digits++;
-	if (digits > width || flag)
+	if (digits > fm -> width || flag)
 		return (digits);
 	else
-		return (width);
+		return (fm -> width);
 }
-
 
 char	*prep_str(size_t size, char	fill)
 {
@@ -124,7 +108,6 @@ int	print_str(va_list ap, t_format *fm)
 	return (free_len(str));
 }
 
-
 int	print_char(va_list ap, t_format *fm)
 {
 	unsigned char	arg;
@@ -144,28 +127,6 @@ int	print_char(va_list ap, t_format *fm)
 	return (free_len(str));
 }
 
-int	print_dec(va_list ap, const char *ptr)
-{
-	int		arg;
-	char	*str;
-	char	*dig_str;
-	size_t	*dig;
-
-	arg = va_arg(ap, int);
-	if (fm -> zerominus == '0')
-		str = prep_str(get_size(fm, arg, 0), '0');
-	else
-		str = prep_str(get_size(fm, arg, 0), ' ');
-	if (!str)
-		return (-1);
-	fill_str(str, arg, fm);
-	
-//
-	str = ft_itoa(arg);
-	len = ft_strlen(str);
-	if (							//		<--- hier weiter
-
-*/
 /*
 int	print_arg(va_list ap, t_format *fm, const char *str)
 {
