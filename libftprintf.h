@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:44:13 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/30 18:44:01 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/02 23:01:47 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 # include <bsd/string.h>
 # include <stdarg.h>
+# include <stdint.h>
 
 typedef struct s_format
 {
@@ -31,18 +32,21 @@ typedef struct s_format
 		char	spaceplus;
 		}       t_format;
 
-int	ft_digtoi(const char *nptr);
+size_t   ft_getdig(long n, int base);
+int add_prefix(char *dest, t_format *fm, int sign);
+void    reverse_str(char *dest, int size, t_format *fm);
 t_format	new_format(void);
 void	get_format(const char *ptr, t_format *fm);
 char	check_syntax(const char *ptr);
 char	*prep_str(size_t size, char	fill);
 int	free_len(char *str);
 int	get_size(t_format *fm, int arg, char flag);
-void    rdec2hex_str(char *dest, long arg, int flag);
+int rdec2hex(char *dest, long arg, char flag);
 int	print_char(va_list ap, t_format *fm);
 int	print_dec(va_list ap, t_format *fm);
 int print_str(va_list ap, t_format *fm);
 int	print_dec(va_list ap, t_format *fm);
 int print_u(va_list ap, t_format *fm);
+int print_hex(va_list ap, t_format *fm);
 
 #endif

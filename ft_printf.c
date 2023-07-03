@@ -1,50 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_hex.c                                         :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 18:03:26 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/30 18:43:30 by ggiertzu         ###   ########.fr       */
+/*   Created: 2023/07/02 22:51:58 by ggiertzu          #+#    #+#             */
+/*   Updated: 2023/07/02 23:06:04 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include "libft.h"
 
-static char	dec2hex_char(int dec, int flag)
+int	print_arg(va_list ap, t_format *fm)
 {
-	int offset;
-
-	offset = 87;
-	if (flag)
-		offset = 55;
-	if (dec >= 10)
-		return (dec + offset);
-	else
-		return (dec + 48);
-}
-
-void	rdec2hex_str(char *dest, long arg, int flag)
-{
-	int	i;
-
-	i = 0;
-	while (arg)
+	if (ft_strchr("diu", fm -> format_spec))
+		return (print_dec(ap, fm));
+	if (fm -> format_spec == 'c')
+		return (print_char(ap, fm));
+	if (fm -> format_spec == 's')
+		return (print_str(ap, fm));
+	if (ft_strchr("xXp", fm -> format_spec))
+		return (print_hex(ap, fm));
+	if (fm -> format_spec == '%')
 	{
-		dest[i] = dec2hex_char(arg % 16, flag);
-		arg /= 16;
-		i++;
+		ft_putchar_fd('%', 1);
+		return (1);
 	}
-	return ;
+	else
+		return (0);
 }
-/*
-int main(void)
-{
-	char str[] = "this is a test";
-	rdec2hex_str(str, 31, 1);
-	printf("%s\n", str);
-	return (0);
-}
-*/

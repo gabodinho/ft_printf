@@ -1,53 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_format.c                                       :+:      :+:    :+:   */
+/*   helperII.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:35:15 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/27 23:19:25 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/02 22:49:42 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdint.h>
-#include <stdlib.h>
+#include "libft.h"
+#include "libftprintf.h"
 
-typedef struct s_format
+char	check_syntax(const char *ptr)
 {
-		char	format_spec;
-		int		width;
-		int		precision;
-		int		alter;
-		char	zerominus;
-		char	spaceplus;
-		}       t_format;
-
-int     ft_isdigit(int c)
-{
-        if (c > 47 && c < 58)
-                return (1);
-        else
-                return (0);
+	if (*ptr == '%')
+		return ('%');
+	while (ft_strchr("#0+- ", *ptr))
+		ptr++;
+	while (ft_isdigit(*ptr))
+		ptr++;
+	if (*ptr == '.')
+	{
+		ptr++;
+		while (ft_isdigit(*ptr))
+			ptr++;
+	}
+	if (ft_strchr("cspdiuxX", *ptr))
+		return (*ptr);
+	else
+		return (0);
 }
 
-char    *ft_strchr(const char *s, int c)
+void	reverse_str(char *dest, int size, t_format *fm)
 {
-        while (*s)
-        {
-                if (*s == (char) c)
-                        return ((char *) s);
-                s++;
-        }
-        if (*s == (char) c)
-                return ((char *) s);
-        return (0);
+	size_t	i;
+	char	buff;
+
+	i = 0;
+	while (i < size - i)
+	{
+		buff = dest[i];
+		dest[i] = dest[size - i - 1];
+		dest[size - i - 1] = buff;
+		i++;
+	}
+	if (fm -> zerominus != '-')
+	{
+		memmove(dest + ft_strlen(dest) - size, dest, size);
+		i = 0;
+		while (i < ft_strlen(dest) - size)
+		{
+			dest[i] = ' ';
+			i++;
+		}
+	}
+	return ;
 }
 
-int	ft_digtoi(const char *nptr)
+static int	ft_digtoi(const char *nptr)
 {
 	int	res;
 
