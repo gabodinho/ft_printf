@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:44:13 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/02 23:01:47 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/03 21:06:31 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,32 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-typedef struct s_format
+typedef struct s_fm
 {
-		char	format_spec;
-		int		width;
-		int		precision;
-		int		alter;
-		char	zerominus;
-		char	spaceplus;
-		}       t_format;
+	char	format_spec;
+	int		width;
+	int		precision;
+	int		alter;
+	char	zerominus;
+	char	spaceplus;
+	}		t_fm;
 
-size_t   ft_getdig(long n, int base);
-int add_prefix(char *dest, t_format *fm, int sign);
-void    reverse_str(char *dest, int size, t_format *fm);
-t_format	new_format(void);
-void	get_format(const char *ptr, t_format *fm);
-char	check_syntax(const char *ptr);
+size_t	ft_getdig(long n, int base);
+int		add_prefix(char *dest, t_fm *fm, int sign);
+void	reverse_str(char *dest, int size, t_fm *fm);
+t_fm	*new_format(void);
+t_fm    *get_format(const char *ptr);
+const	char	*check_syntax(const char *ptr);
 char	*prep_str(size_t size, char	fill);
-int	free_len(char *str);
-int	get_size(t_format *fm, int arg, char flag);
-int rdec2hex(char *dest, long arg, char flag);
-int	print_char(va_list ap, t_format *fm);
-int	print_dec(va_list ap, t_format *fm);
-int print_str(va_list ap, t_format *fm);
-int	print_dec(va_list ap, t_format *fm);
-int print_u(va_list ap, t_format *fm);
-int print_hex(va_list ap, t_format *fm);
+int		free_len(char *str);
+//int		get_size(t_fm *fm, int arg, char flag);
+int 	rdec2hex(char *dest, long arg, char flag);
+int		print_char(va_list ap, t_fm *fm);
+int		print_dec(va_list ap, t_fm *fm);
+int		print_str(va_list ap, t_fm *fm);
+int		print_dec(va_list ap, t_fm *fm);
+int	 	print_u(va_list ap, t_fm *fm);
+int 	print_hex(va_list ap, t_fm *fm);
+int 	ft_printf(const char* str, ...);
 
 #endif

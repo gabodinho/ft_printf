@@ -6,14 +6,36 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/02 22:38:23 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/03 21:34:00 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "libftprintf.h"
 
-static int	get_zeros(t_format *fm, long arg)
+static int	get_size(t_fm *fm, int arg, char flag)
+{
+	int	digits;
+	int	is_negativ;
+
+	is_negativ = 0;
+	if (arg < 0)
+	{
+		is_negativ = 1;
+		arg = arg * -1;
+	}
+	digits = ft_getdig(arg, 10);
+	if (fm -> precision > digits)
+		digits = fm -> precision;
+	if (is_negativ || fm -> spaceplus)
+		digits++;
+	if (digits > fm -> width || flag)
+		return (digits);
+	else
+		return (fm -> width);
+}
+
+static int	get_zeros(t_fm *fm, long arg)
 {
 	int	n_zeros;
 	int	digits;
@@ -35,7 +57,7 @@ static int	get_zeros(t_format *fm, long arg)
 	return (n_zeros);
 }
 
-static void	fill_decstr(char *dest, long arg, t_format *fm)
+static void	fill_decstr(char *dest, long arg, t_fm *fm)
 {
 	int	i;
 	int sign;
@@ -65,7 +87,7 @@ static void	fill_decstr(char *dest, long arg, t_format *fm)
 }
 
 // funktioniert auch für format_spec u
-int	print_dec(va_list ap, t_format *fm)
+int	print_dec(va_list ap, t_fm *fm)
 {
 	long	arg;
 	char	*str;
@@ -79,7 +101,7 @@ int	print_dec(va_list ap, t_format *fm)
 	return (free_len(str));
 }
 /*
-int	print_u(va_list ap, t_format *fm)
+int	print_u(va_list ap, t_fm *fm)
 {
 	unsigned int	arg;
 	char			*str;

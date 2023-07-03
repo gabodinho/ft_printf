@@ -6,17 +6,17 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:35:15 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/02 22:49:42 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/03 20:46:43 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "libftprintf.h"
 
-char	check_syntax(const char *ptr)
+const char	*check_syntax(const char *ptr)
 {
 	if (*ptr == '%')
-		return ('%');
+		return (ptr);
 	while (ft_strchr("#0+- ", *ptr))
 		ptr++;
 	while (ft_isdigit(*ptr))
@@ -28,12 +28,12 @@ char	check_syntax(const char *ptr)
 			ptr++;
 	}
 	if (ft_strchr("cspdiuxX", *ptr))
-		return (*ptr);
+		return (ptr);
 	else
 		return (0);
 }
 
-void	reverse_str(char *dest, int size, t_format *fm)
+void	reverse_str(char *dest, int size, t_fm *fm)
 {
 	size_t	i;
 	char	buff;
@@ -72,21 +72,21 @@ static int	ft_digtoi(const char *nptr)
 	return (res);
 }
 
-t_format	new_format(void)
+t_fm	*new_format(void)
 {
-	t_format	*new;
+	t_fm	*new;
 
-	new = malloc(sizeof(t_format));
+	new = malloc(sizeof(t_fm));
 	new -> format_spec = 0;
 	new -> width = 0;
 	new -> precision = -1;
 	new -> alter = 0;
 	new -> zerominus = 0;
 	new -> spaceplus = 0;
-	return (*new);
+	return (new);
 }
 
-static void	get_formatII(const char *ptr, t_format *fm)
+static void	get_formatII(const char *ptr, t_fm *fm)
 {
 	fm -> width = ft_digtoi(ptr);
 	while (ft_isdigit(*ptr))
@@ -105,12 +105,15 @@ static void	get_formatII(const char *ptr, t_format *fm)
 	return ;
 }
 
-void	get_format(const char *ptr, t_format *fm)
+t_fm	*get_format(const char *ptr)
 {
+	t_fm	*fm;
+
+	fm = new_format();
 	if (*ptr == '%')
 	{
 		fm -> format_spec = '%';
-		return ;
+		return (fm);
 	}
 	while (ft_strchr("#0- +", *ptr))
 	{
@@ -127,7 +130,7 @@ void	get_format(const char *ptr, t_format *fm)
 		ptr++;
 	}
 	get_formatII(ptr, fm);
-	return ;
+	return (fm);
 }
 /*
 #include <stdio.h>
@@ -135,8 +138,8 @@ void	get_format(const char *ptr, t_format *fm)
 int main(void)
 {
 	char str[] = "#++--#0 345.34545s4%this";
-	t_format fm = new_format();
-	get_format(str, &fm);
+	t_fm fm = new_format();
+	get_fm(str, &fm);
 	printf("flags are: \"%d%0-10c%c\"; width is: %d; precision is %d;\nformat specifier is: %c", \
 	fm.alter, fm.zerominus, fm.spaceplus, fm.width, fm.precision, fm.format_spec);
 	return (0);

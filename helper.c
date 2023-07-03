@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/02 23:01:13 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/03 20:09:59 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ size_t   ft_getdig(long n, int base)
         return (digits);
 }
 
-int	add_prefix(char *dest, t_format *fm, int sign)
+int	add_prefix(char *dest, t_fm *fm, int sign)
 {
 	int i;
 

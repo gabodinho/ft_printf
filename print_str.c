@@ -6,59 +6,48 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 00:11:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/02 22:09:50 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/03 21:33:06 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include "libft.h"
 
-int	get_size(t_format *fm, int arg, char flag)
+static int	get_size_str(t_fm *fm, const char *arg, int flag)
 {
-	int	digits;
-	int	is_negativ;
+	int	len;
 
-	is_negativ = 0;
-	if (arg < 0)
-	{
-		is_negativ = 1;
-		arg = arg * -1;
-	}
-	digits = ft_getdig(arg, 10);
-	if (fm -> precision > digits)
-		digits = fm -> precision;
-	if (is_negativ || fm -> spaceplus)
-		digits++;
-	if (digits > fm -> width || flag)
-		return (digits);
+	len = ft_strlen(arg);
+	if (fm -> precision < len && fm -> precision != -1)
+		len = fm -> precision;
+	if (len > fm -> width || flag)
+		return (len);
 	else
 		return (fm -> width);
 }
 
-int	print_str(va_list ap, t_format *fm)
+int	print_str(va_list ap, t_fm *fm)
 {
-	const char		*arg;
-	char			*str;
-	size_t			len;
+	const char	*arg;
+	char		*str;
+	int			buff_len;
+	int			prt_len;
 
 	arg = va_arg(ap, const char*);
-	len = ft_strlen(arg);
-	if ((int) len >= fm -> width)
-		fm -> width = len;
-	str = prep_str(fm -> width, ' ');
+	buff_len = get_size_str(fm, arg, 0);
+	str = prep_str(buff_len, ' ');
 	if (!str)
 		return (-1);
-	if (fm -> precision < 0 || fm -> precision >= (int) len)
-		fm -> precision = len;
+	prt_len = get_size_str(fm, arg, 1);
 	if (fm -> zerominus == '-')
-		ft_memcpy(str, arg, fm -> precision);
+		ft_memcpy(str, arg, prt_len);
 	else
-		ft_memcpy(str + (fm -> width - fm -> precision), arg, fm -> precision);
+		ft_memcpy(str + (buff_len - prt_len), arg, prt_len);
 	ft_putstr_fd(str, 1);
 	return (free_len(str));
 }
 
-int	print_char(va_list ap, t_format *fm)
+int	print_char(va_list ap, t_fm *fm)
 {
 	unsigned char	arg;
 	char			*str;

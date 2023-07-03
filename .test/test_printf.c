@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 10:49:36 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/01 22:24:48 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:07:28 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -56,6 +56,7 @@ int main(void)
 	printf("14. %#010x\n", 31);
 	printf("14. % 0#6X\n", 1234);
 	printf("14. % 0#6X\n", 0);
+	printf("result printf(0): %d\n", printf(0)); 
 /*
 	printf("1. %- 06.6d\n", -1234);
 	printf("2. %0 d\n", test_int);

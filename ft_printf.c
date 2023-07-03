@@ -6,14 +6,14 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 22:51:58 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/02 23:06:04 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/03 20:52:45 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include "libft.h"
 
-int	print_arg(va_list ap, t_format *fm)
+static int	print_arg(va_list ap, t_fm *fm)
 {
 	if (ft_strchr("diu", fm -> format_spec))
 		return (print_dec(ap, fm));
@@ -30,4 +30,31 @@ int	print_arg(va_list ap, t_format *fm)
 	}
 	else
 		return (0);
+}
+
+int	ft_printf(const char* str, ...)
+{
+	int	res;
+	va_list	ap;
+
+	res = 0;
+	va_start(ap, str);
+	if (!str)
+		return (-1);
+	while (*str)
+	{
+		if (*str == '%' && check_syntax(str + 1))
+		{
+			res += print_arg(ap, get_format(str + 1));
+			str = check_syntax(str + 1);
+		}
+		else
+		{
+			ft_putchar_fd(*str, 1);
+			res++;
+		}
+		str++;
+	}
+	va_end(ap);
+	return (res);
 }

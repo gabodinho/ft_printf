@@ -6,14 +6,14 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/02 23:18:49 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/03 20:07:14 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "libftprintf.h"
 
-static void	mod_fmptr(t_format	*fm)
+static void	mod_fmptr(t_fm	*fm)
 {
 	if (fm -> zerominus == '0')
 		fm -> zerominus = 0;
@@ -23,7 +23,7 @@ static void	mod_fmptr(t_format	*fm)
 	return ;
 }
 
-static int	get_size_hex(t_format *fm, int arg, char flag)
+static int	get_size_hex(t_fm *fm, int arg, char flag)
 {
 	int	digits;
 
@@ -38,7 +38,7 @@ static int	get_size_hex(t_format *fm, int arg, char flag)
 		return (fm -> width);
 }
 
-static int	get_zeros_hex(t_format *fm, long arg)
+static int	get_zeros_hex(t_fm *fm, long arg)
 {
 	int	n_zeros;
 	int	digits;
@@ -59,7 +59,7 @@ static int	get_zeros_hex(t_format *fm, long arg)
 		return (0);
 }
 
-static void	fill_hexstr(char *dest, long arg, t_format *fm)
+static void	fill_hexstr(char *dest, long arg, t_fm *fm)
 {
 	int	i;
 	int n_zero;
@@ -78,7 +78,7 @@ static void	fill_hexstr(char *dest, long arg, t_format *fm)
 	return ;
 }
 
-int	print_hex(va_list ap, t_format *fm)
+int	print_hex(va_list ap, t_fm *fm)
 {
 	uintptr_t	arg;
 	char			*str;
