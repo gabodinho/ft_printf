@@ -6,12 +6,12 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/03 21:34:00 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/06 00:00:38 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	get_size(t_fm *fm, int arg, char flag)
 {

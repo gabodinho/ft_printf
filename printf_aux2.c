@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helperII.c                                         :+:      :+:    :+:   */
+/*   printf_aux2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:35:15 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/03 20:46:43 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/06 00:01:22 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 const char	*check_syntax(const char *ptr)
 {

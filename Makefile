@@ -6,12 +6,12 @@
 #    By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/20 18:33:58 by ggiertzu          #+#    #+#              #
-#    Updated: 2023/06/27 03:35:03 by ggiertzu         ###   ########.fr        #
+#    Updated: 2023/07/06 00:38:46 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-HEADER = libftprintf.h
+HEADER = ft_printf.h
 CC = cc
 CFLAGS = -Werror -Wall -Wextra
 CPPFLAGS = -I./libft
@@ -33,7 +33,7 @@ all: $(NAME)
 $(NAME): $(OBJS) $(LIBFT)		 # $(DEPS)
 	ar rcs $@ $^
 
-$(OBJS): %.o: %.c $(HEADER) $(DEPS)
+$(OBJS): %.o: %.c $(HEADER) 	# $(DEPS)
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -c $< -o $@ $(LDLIBS)
 
 $(LIBFT):
@@ -44,6 +44,7 @@ $(DEPS): %.d: %.c
 
 include $(DEPS)
 
+bonus: $(NAME)
 clean:
 	${RM} $(OBJS) $(DEPS)
 	make -C $(LIBFT_DIR) clean
@@ -52,11 +53,107 @@ fclean: clean
 	make -C $(LIBFT_DIR) fclean
 re: fclean all
 
-cf:
-	$(MAKE) -f Makefile2 $(TARGET)
+coffee:
+	@clear
+	@echo ""
+	@echo "                   ("
+	@echo "                      )     ("
+	@echo "               ___...(-------)-....___"
+	@echo '           .-""       )    (          ""-.'
+	@echo "      .-''''|-._             )         _.-|"
+	@echo '     /  .--.|   `""---...........---""`   |'
+	@echo "    /  /    |                             |"
+	@echo "    |  |    |                             |"
+	@echo "     \  \   |                             |"
+	@echo "      '\ '\ |                             |"
+	@echo "        '\ '|                             |"
+	@echo "        _/ /\                             /"
+	@echo "       (__/  \                           /"
+	@echo '    _..---""` \                         /`""---.._'
+	@echo " .-'           \                       /          '-."
+	@echo ":               '-.__             __.-'              :"
+	@echo ':                  ) ""---...---"" (                :'
+	@echo "\'._                '"--...___...--"'              _.'"
+	@echo '   \""--..__                              __..--""/'
+	@echo "     '._     """----.....______.....----"""         _.'"
+	@echo '         ""--..,,_____            _____,,..--"""'''
+	@echo '                      """------"""'
+	@sleep 0.5
+	@clear
+	@echo ""
+	@echo "                 ("
+	@echo "                   )      ("
+	@echo "               ___..(.------)--....___"
+	@echo '           .-""       )   (           ""-.'
+	@echo "      .-''''|-._      (       )        _.-|"
+	@echo '     /  .--.|   `""---...........---""`   |'
+	@echo "    /  /    |                             |"
+	@echo "    |  |    |                             |"
+	@echo "     \  \   |                             |"
+	@echo "      '\ '\ |                             |"
+	@echo "        '\ '|                             |"
+	@echo "        _/ /\                             /"
+	@echo "       (__/  \                           /"
+	@echo '    _..---""` \                         /`""---.._'
+	@echo " .-'           \                       /          '-."
+	@echo ":               '-.__             __.-'              :"
+	@echo ':                  ) ""---...---"" (                :'
+	@echo "\'._                '"--...___...--"'              _.'"
+	@echo '   \""--..__                              __..--""/'
+	@echo "     '._     """----.....______.....----"""         _.'"
+	@echo '         ""--..,,_____            _____,,..--"""'''
+	@echo '                      """------"""'
+	@sleep 0.5
+	@clear
+	@echo ""
+	@echo "               ("
+	@echo "                   )     ("
+	@echo "               ___..(.------)--....___"
+	@echo '           .-""      )    (           ""-.'
+	@echo "      .-''''|-._      (       )        _.-|"
+	@echo '     /  .--.|   `""---...........---""`   |'
+	@echo "    /  /    |                             |"
+	@echo "    |  |    |                             |"
+	@echo "     \  \   |                             |"
+	@echo "      '\ '\ |                             |"
+	@echo "        '\ '|                             |"
+	@echo "        _/ /\                             /"
+	@echo "       (__/  \                           /"
+	@echo '    _..---""` \                         /`""---.._'
+	@echo " .-'           \                       /          '-."
+	@echo ":               '-.__             __.-'              :"
+	@echo ':                  ) ""---...---"" (                :'
+	@echo "\'._                '"--...___...--"'              _.'"
+	@echo '   \""--..__                              __..--""/'
+	@echo "     '._     """----.....______.....----"""         _.'"
+	@echo '         ""--..,,_____            _____,,..--"""'''
+	@echo '                      """------"""'
+	@sleep 0.5
+	@clear
+	@echo ""
+	@echo "             (         ) "
+	@echo "               )        ("
+	@echo "               ___)...----)----....___"
+	@echo '           .-""      )    (           ""-.'
+	@echo "      .-''''|-._      (       )        _.-|"
+	@echo '     /  .--.|   `""---...........---""`   |'
+	@echo "    /  /    |                             |"
+	@echo "    |  |    |                             |"
+	@echo "     \  \   |                             |"
+	@echo "      '\ '\ |                             |"
+	@echo "        '\ '|                             |"
+	@echo "        _/ /\                             /"
+	@echo "       (__/  \                           /"
+	@echo '    _..---""` \                         /`""---.._'
+	@echo " .-'           \                       /          '-."
+	@echo ":               '-.__             __.-'              :"
+	@echo ':                  ) ""---...---"" (                :'
+	@echo "\'._                '"--...___...--"'              _.'"
+	@echo '   \""--..__                              __..--""/'
+	@echo "     '._     """----.....______.....----"""         _.'"
+	@echo '         ""--..,,_____            _____,,..--"""'''
+	@echo '                      """------"""'
 
-cfclean:
-	$(MAKE) -f Makefile2 clean
 
 # $@ refers to target name; $^ all prerequisites; $< refers to first matching object
 #%.o: %.c   <-- this is an implicit rule and does not need to be written
