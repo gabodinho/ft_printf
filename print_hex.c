@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/06 00:01:47 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/07 20:00:47 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,13 @@ int	print_hex(va_list ap, t_fm *fm)
 	char			*str;
 
 	if (fm -> format_spec == 'p')
-	{
+	{	
 		arg = va_arg(ap, uintptr_t);
+		if (!arg)
+		{
+			write(1, "(nil)", 5);
+			return (5);
+		}
 		mod_fmptr(fm);
 	}
 	else
