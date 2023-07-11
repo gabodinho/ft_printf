@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/06 00:00:38 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/08 23:56:52 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	print_dec(va_list ap, t_fm *fm)
 	long	arg;
 	char	*str;
 
-	arg = va_arg(ap, long);
+	arg = va_arg(ap, int);
 	str = prep_str(get_size(fm, arg, 0), ' ');
 	if (!str)
 		return (-1);

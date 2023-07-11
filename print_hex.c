@@ -6,13 +6,14 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/07 20:00:47 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/11 12:24:10 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
+/*
 static void	mod_fmptr(t_fm	*fm)
 {
 	if (fm -> zerominus == '0')
@@ -22,7 +23,10 @@ static void	mod_fmptr(t_fm	*fm)
 	fm -> precision = -1;
 	return ;
 }
+*/
 
+
+// currently under construction
 static int	get_size_hex(t_fm *fm, int arg, char flag)
 {
 	int	digits;
@@ -32,12 +36,15 @@ static int	get_size_hex(t_fm *fm, int arg, char flag)
 		digits = fm -> precision;
 	if (fm -> alter)
 		digits += 2;
+//	if (fm -> spaceplus && fm -> format_spec == 'p')
+//		digits++;
 	if (digits > fm -> width || flag)
 		return (digits);
 	else
 		return (fm -> width);
 }
 
+// modify this for ptr or create a new function?
 static int	get_zeros_hex(t_fm *fm, long arg)
 {
 	int	n_zeros;
@@ -91,7 +98,7 @@ int	print_hex(va_list ap, t_fm *fm)
 			write(1, "(nil)", 5);
 			return (5);
 		}
-		mod_fmptr(fm);
+		fm -> alter = 1;
 	}
 	else
 		arg = (uintptr_t) va_arg(ap, unsigned int);
