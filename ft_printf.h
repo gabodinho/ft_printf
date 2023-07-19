@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:44:13 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/05 23:48:37 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/19 13:22:54 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int 	rdec2hex(char *dest, long arg, char flag);
 int		print_char(va_list ap, t_fm *fm);
 int		print_dec(va_list ap, t_fm *fm);
 int		print_str(va_list ap, t_fm *fm);
+int		print_ptr(va_list ap, t_fm *fm);
 int		print_dec(va_list ap, t_fm *fm);
 int	 	print_u(va_list ap, t_fm *fm);
 int 	print_hex(va_list ap, t_fm *fm);

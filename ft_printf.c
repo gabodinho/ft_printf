@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 22:51:58 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/07 20:00:54 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/19 13:18:18 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ static int	print_arg(va_list ap, t_fm *fm)
 		return (print_char(ap, fm));
 	if (fm -> format_spec == 's')
 		return (print_str(ap, fm));
-	if (ft_strchr("xXp", fm -> format_spec))
+	if (ft_strchr("xX", fm -> format_spec))
 		return (print_hex(ap, fm));
+	if (fm -> format_spec == 'p')
+		return (print_ptr(ap, fm));
 	if (fm -> format_spec == '%')
 	{
 		ft_putchar_fd('%', 1);

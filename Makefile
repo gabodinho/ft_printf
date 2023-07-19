@@ -6,7 +6,7 @@
 #    By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/20 18:33:58 by ggiertzu          #+#    #+#              #
-#    Updated: 2023/07/07 12:22:53 by ggiertzu         ###   ########.fr        #
+#    Updated: 2023/07/19 13:20:40 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LDFLAGS = -L./libft -L.
 #LDLIBS = -lftprintf -lft
 RM = rm -f
 
-SRCS = print_dec.c print_hex.c printf_aux1.c printf_aux2.c print_str.c ft_printf.c
+SRCS = print_dec.c print_hex.c print_ptr.c printf_aux1.c printf_aux2.c print_str.c ft_printf.c
 OBJS = $(SRCS:.c=.o)
 
 LIBFT_DIR = ./libft

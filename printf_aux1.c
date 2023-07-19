@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/06 00:01:00 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:15:54 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	rdec2hex(char *dest, long arg, char flag)
 	offset = 87;
 	if (flag == 'X')
 		offset = 55;
-	while (arg)
+	while (arg || (!arg && !i))
 	{
 		dec = arg % 16;
 		if (dec >= 10)
@@ -84,25 +84,25 @@ size_t   ft_getdig(long n, int base)
 
 int	add_prefix(char *dest, t_fm *fm, int sign)
 {
-	int i;
-
-	i = 0;
-	if (sign == -1 || (fm -> spaceplus && sign == 1))
+	if (sign == -1)
 	{
-		if (sign == -1)
-	        *dest = '-';
-		else
-			*dest = fm -> spaceplus;
-		i = 1;
+		*dest = '-';
+		return (1);
 	}
-	else if ((sign == 2 && fm -> alter) || fm -> format_spec == 'P')
+	else if (sign == 1 && fm -> spaceplus)
+	{
+		*dest = fm -> spaceplus;
+		return (1);
+	}
+	else if (sign == 2 && (fm -> alter || fm -> format_spec == 'p'))
 	{
 		if (fm -> format_spec == 'x' || fm -> format_spec == 'p')
 			*dest = 'x';
 		else if (fm -> format_spec == 'X')
 			*dest = 'X';
 		*(dest + 1) = '0';
-	    i = 2;
+	    return (2);
 	}
-	return (i);
+	else
+		return (0);
 }

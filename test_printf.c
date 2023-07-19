@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:17:01 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/07 19:11:16 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:59:00 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void test_function() {
 int main(void)
 {
 	compare_output("print this: %d", 1234);
+	ft_printf("%d\n", -1324);
     return 0;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 19:25:52 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/11 12:17:46 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:24:51 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void comp(int my, int og)
 	if (my - og == 0)
     {
         printf(GREEN "Passed\n" RESET);
+		printf("return = %d\n", og);
         return ;
     }
     else
@@ -38,15 +39,26 @@ void comp(int my, int og)
 
 int main()
 {
-	char format[] = "%+0 15p";
+	char format[] = "%+0= 15p";
 	char *str = ft_strjoin("Format START:%", format);
 //	ft_putstr_fd(str, 1);
 	printf(str);
     printf("\nmy function START:");
 	fflush(stdout);
-    int a = ft_printf(format, &str );
+    int a = ft_printf(format, str );
     printf("\nog function START:");
-    int b = printf(format, &str );
+    int b = printf(format, str);
+    comp(a, b);
+
+	char format2[] = "%0+# 12x";
+	char *str2 = ft_strjoin("\nFormat START:%", format2);
+//	ft_putstr_fd(str, 1);
+	printf(str2);
+    printf("\nmy function START:");
+	fflush(stdout);
+    a = ft_printf(format2, 0);
+    printf("\nog function START:");
+    b = printf(format2, 0);
     comp(a, b);
 
 	return (0);

@@ -91,7 +91,7 @@ static void	get_formatII(const char *ptr, t_fm *fm)
 	fm -> width = ft_digtoi(ptr);
 	while (ft_isdigit(*ptr))
 		ptr++;
-	if (*ptr == '.')	
+	if (*ptr == '.')
 	{
 		ptr++;
 		if (fm -> zerominus == '0')
