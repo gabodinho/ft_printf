@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 22:51:58 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/19 13:18:18 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:51:13 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 static int	print_arg(va_list ap, t_fm *fm)
 {
-	if (ft_strchr("diu", fm -> format_spec))
+	if (ft_strchr("di", fm -> format_spec))
 		return (print_dec(ap, fm));
+	if (fm -> format_spec == 'u')
+		return (print_u(ap, fm));
 	if (fm -> format_spec == 'c')
 		return (print_char(ap, fm));
 	if (fm -> format_spec == 's')
@@ -45,10 +47,14 @@ int	ft_printf(const char* str, ...)
 		return (-1);
 	while (*str)
 	{
-		if (*str == '%' && check_syntax(str + 1))
+		if (*str == '%')
 		{
-			res += print_arg(ap, get_format(str + 1));
-			str = check_syntax(str + 1);
+			str++;
+			if (check_syntax(str))
+			{
+				res += print_arg(ap, get_format(str));
+				str = check_syntax(str);
+			}
 		}
 		else
 		{

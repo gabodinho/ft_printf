@@ -6,33 +6,51 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/08 23:56:52 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:51:12 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-static int	get_size(t_fm *fm, int arg, char flag)
+static int	get_size(t_fm *fm, long arg, char flag)
 {
 	int	digits;
-	int	is_negativ;
 
-	is_negativ = 0;
-	if (arg < 0)
-	{
-		is_negativ = 1;
-		arg = arg * -1;
-	}
 	digits = ft_getdig(arg, 10);
 	if (fm -> precision > digits)
 		digits = fm -> precision;
-	if (is_negativ || fm -> spaceplus)
+	if (arg >= 0 && fm -> spaceplus)
 		digits++;
+	if (!arg && !fm -> precision)
+		digits = 0;
 	if (digits > fm -> width || flag)
 		return (digits);
 	else
 		return (fm -> width);
+}
+
+static int	put_ruint(long arg, char *dest, t_fm *fm)
+{
+	int	i;
+
+	i = 0;
+	if (arg == 0 && !fm -> precision)
+		return (0);
+	else if (arg == 0)
+	{
+		dest[0] = '0';
+		return (1);
+	}
+	else if (arg < 0)
+		arg *= -1;
+	while (arg)
+	{
+		dest[i] = arg % 10 + 48;
+		arg = arg / 10;
+		i++;
+	}
+	return (i);
 }
 
 static int	get_zeros(t_fm *fm, long arg)
@@ -42,6 +60,8 @@ static int	get_zeros(t_fm *fm, long arg)
 
 	digits = ft_getdig(arg, 10);
 	n_zeros = 0;
+	if (!arg && !fm -> precision)
+		return (0);
 	if (fm -> precision >= digits)
 	{
 		n_zeros = fm -> precision - digits;
@@ -51,7 +71,7 @@ static int	get_zeros(t_fm *fm, long arg)
 	else if (fm -> width > digits && fm -> zerominus == '0')
 	{
 		n_zeros = fm -> width - digits;
-		if (arg < 0 || (arg > 0 && fm -> spaceplus))
+		if (fm -> spaceplus && arg >= 0 && fm -> precision == -1)
 			n_zeros--;
 	}
 	return (n_zeros);
@@ -63,18 +83,12 @@ static void	fill_decstr(char *dest, long arg, t_fm *fm)
 	int sign;
 	int n_zero;
 
-	n_zero = get_zeros(fm, arg);	
+	n_zero = get_zeros(fm, arg);
+//	printf("nzeros: %d", n_zero);
 	sign = 1;
 	if (arg < 0)
 		sign = -1;
-	arg *= sign;
-	i = 0;
-	while (arg)
-	{
-		dest[i] = arg % 10 + 48;
-		arg = arg / 10;
-		i++;
-	}
+	i = put_ruint(arg, dest, fm);
 	while (n_zero > 0)
 	{
 		dest[i] = '0';
@@ -94,24 +108,27 @@ int	print_dec(va_list ap, t_fm *fm)
 
 	arg = va_arg(ap, int);
 	str = prep_str(get_size(fm, arg, 0), ' ');
+//	printf("size: %d, digits: %zu\n", get_size(fm, arg, 0), ft_getdig(arg, 10));
 	if (!str)
-		return (-1);
+		return (0);
 	fill_decstr(str, arg, fm);
 	ft_putstr_fd(str, 1);
 	return (free_len(str));
 }
-/*
+
 int	print_u(va_list ap, t_fm *fm)
 {
 	unsigned int	arg;
 	char			*str;
 
 	arg = va_arg(ap, unsigned int);
+//	printf("size: %d, digits: %zu\n", get_size(fm, arg, 0), ft_getdig(arg, 10));
+	fm -> spaceplus = 0;
 	str = prep_str(get_size(fm, arg, 0), ' ');
 	if (!str)
-		return (-1);
+		return (0);
 	fill_decstr(str, arg, fm);
 	ft_putstr_fd(str, 1);
 	return (free_len(str));
 }
-*/
+

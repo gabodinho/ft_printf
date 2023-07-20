@@ -6,13 +6,14 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 19:25:52 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/19 16:24:51 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:51:10 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_printf.h"
 #include "libft.h"
+#include <stdint.h>		// for int_max
 
 #define RESET   "\033[0m"
 #define RED     "\033[31m"
@@ -39,26 +40,27 @@ void comp(int my, int og)
 
 int main()
 {
-	char format[] = "%+0= 15p";
+	char format[] = "%+ 0.15d";
 	char *str = ft_strjoin("Format START:%", format);
+	int arg = 483664568;
 //	ft_putstr_fd(str, 1);
 	printf(str);
     printf("\nmy function START:");
 	fflush(stdout);
-    int a = ft_printf(format, str );
+    int a = ft_printf("% %% %%%", 48345648);			// check this case!
     printf("\nog function START:");
-    int b = printf(format, str);
+    int b = printf("% %% %%%", 48365648);
     comp(a, b);
 
-	char format2[] = "%0+# 12x";
+	char format2[] = "%+ 012.d";
 	char *str2 = ft_strjoin("\nFormat START:%", format2);
 //	ft_putstr_fd(str, 1);
 	printf(str2);
     printf("\nmy function START:");
 	fflush(stdout);
-    a = ft_printf(format2, 0);
+    a = ft_printf(format2, arg);
     printf("\nog function START:");
-    b = printf(format2, 0);
+    b = printf(format2, arg);
     comp(a, b);
 
 	return (0);
