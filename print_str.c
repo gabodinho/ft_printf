@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 00:11:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/06 00:02:15 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:23:54 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,23 @@ int	print_str(va_list ap, t_fm *fm)
 	char		*str;
 	int			buff_len;
 	int			prt_len;
-
+	
 	arg = va_arg(ap, const char*);
+	if (!arg)
+	{
+		if (fm -> precision < 6)
+		{	
+			fm -> precision = 0;
+			arg = "";
+		}
+		else
+			arg = ft_strdup("(null)");
+	}
+//	printf("arg: %s\n", arg);
 	buff_len = get_size_str(fm, arg, 0);
 	str = prep_str(buff_len, ' ');
 	if (!str)
-		return (-1);
+		return (0);
 	prt_len = get_size_str(fm, arg, 1);
 	if (fm -> zerominus == '-')
 		ft_memcpy(str, arg, prt_len);

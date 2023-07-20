@@ -6,17 +6,15 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:35:15 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/20 16:51:16 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:34:35 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-const char	*check_syntax(const char *ptr)
+const char	*shift_ptr(const char *ptr)
 {
-	if (*ptr == '%')
-		return (ptr);
 	while (ft_strchr("#0+- ", *ptr))
 		ptr++;
 	while (ft_isdigit(*ptr))
@@ -27,7 +25,22 @@ const char	*check_syntax(const char *ptr)
 		while (ft_isdigit(*ptr))
 			ptr++;
 	}
-	if (ft_strchr("cspdiuxX", *ptr))
+	return (ptr);
+}
+
+const char	*check_syntax(const char *ptr)
+{
+	while (ft_strchr("#0+- ", *ptr))
+		ptr++;
+	while (ft_isdigit(*ptr))
+		ptr++;
+	if (*ptr == '.')
+	{
+		ptr++;
+		while (ft_isdigit(*ptr))
+			ptr++;
+	}
+	if (ft_strchr("cspdiuxX%", *ptr))
 		return (ptr);
 	else
 		return (0);
@@ -100,7 +113,7 @@ static void	get_formatII(const char *ptr, t_fm *fm)
 		while (ft_isdigit(*ptr))
 			ptr++;
 	}
-	if (ft_strchr("cspdiuxX", *ptr))
+	if (ft_strchr("cspdiuxX%", *ptr))
 		fm -> format_spec = *ptr;
 	return ;
 }
@@ -110,11 +123,6 @@ t_fm	*get_format(const char *ptr)
 	t_fm	*fm;
 
 	fm = new_format();
-	if (*ptr == '%')
-	{
-		fm -> format_spec = '%';
-		return (fm);
-	}
 	while (ft_strchr("#0- +", *ptr))
 	{
 		if (*ptr == '#')

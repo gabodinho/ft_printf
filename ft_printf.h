@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:44:13 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/20 16:05:47 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:26:08 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	reverse_str(char *dest, int size, t_fm *fm);
 t_fm	*new_format(void);
 t_fm    *get_format(const char *ptr);
 const	char	*check_syntax(const char *ptr);
+const char  *shift_ptr(const char *ptr);
 char	*prep_str(size_t size, char	fill);
 int		free_len(char *str);
 //int		get_size(t_fm *fm, int arg, char flag);

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 19:25:52 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/20 16:51:10 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:24:44 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,28 @@ void comp(int my, int og)
 
 int main()
 {
-	char format[] = "%+ 0.15d";
+	char format[] = "% s";
 	char *str = ft_strjoin("Format START:%", format);
-	int arg = 483664568;
+	char arg[] = "";
+
 //	ft_putstr_fd(str, 1);
 	printf(str);
     printf("\nmy function START:");
 	fflush(stdout);
-    int a = ft_printf("% %% %%%", 48345648);			// check this case!
+	int a = ft_printf(format, arg);			// check this case!
     printf("\nog function START:");
-    int b = printf("% %% %%%", 48365648);
+    int b = printf(format, arg);
     comp(a, b);
 
-	char format2[] = "%+ 012.d";
+	char format2[] = "%12.7s";
 	char *str2 = ft_strjoin("\nFormat START:%", format2);
 //	ft_putstr_fd(str, 1);
 	printf(str2);
     printf("\nmy function START:");
 	fflush(stdout);
-    a = ft_printf(format2, arg);
+    a = ft_printf(format2, 0);
     printf("\nog function START:");
-    b = printf(format2, arg);
+    b = printf(format2, 0);
     comp(a, b);
 
 	return (0);
