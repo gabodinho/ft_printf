@@ -6,18 +6,17 @@
 #    By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/20 18:33:58 by ggiertzu          #+#    #+#              #
-#    Updated: 2023/07/21 18:14:58 by ggiertzu         ###   ########.fr        #
+#    Updated: 2023/07/21 19:34:22 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-HEADER = ft_printf.h
+HEADER = ft_printf.h libft.h
 CC = cc
-CFLAGS = -Werror -Wall -Wextra -I. -I./libft
-#CPPFLAGS = -I./libft
+CFLAGS = -Werror -Wall -Wextra -I. -Ilibft
 MAKE = make -C
-LDFLAGS = -L./libft -L.
-#LDLIBS = -lftprintf -lft
+LDFLAGS = -Llibft/
+LDLIBS = -lft
 RM = rm -f
 
 SRCS = print_dec.c  print_hex.c print_ptr.c printf_utils1.c \
@@ -27,20 +26,20 @@ OBJS = $(SRCS:.c=.o)
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re #bonus
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
+$(NAME): $(LIBFT) $(HEADER) $(OBJS)
 	ar rcs $@ $^
 
 %.o: %.c $(HEADER)
-	$(CC) -c $< -o $@ $(CFLAGS)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
 	$(MAKE) $(LIBFT_DIR)
 
-bonus: $(NAME)
+#bonus: $(NAME)
 clean:
 	${RM} $(OBJS)
 	$(MAKE) $(LIBFT_DIR) clean

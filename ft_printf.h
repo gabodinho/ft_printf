@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:44:13 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/21 18:19:47 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:28:23 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <bsd/string.h>
 # include <stdarg.h>
 # include <stdint.h>
+# include "./libft/libft.h"
 
 typedef struct s_fm
 {
