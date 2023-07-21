@@ -1,76 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_aux2.c                                      :+:      :+:    :+:   */
+/*   printf_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:35:15 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/20 18:34:35 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:19:22 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
-
-const char	*shift_ptr(const char *ptr)
-{
-	while (ft_strchr("#0+- ", *ptr))
-		ptr++;
-	while (ft_isdigit(*ptr))
-		ptr++;
-	if (*ptr == '.')
-	{
-		ptr++;
-		while (ft_isdigit(*ptr))
-			ptr++;
-	}
-	return (ptr);
-}
-
-const char	*check_syntax(const char *ptr)
-{
-	while (ft_strchr("#0+- ", *ptr))
-		ptr++;
-	while (ft_isdigit(*ptr))
-		ptr++;
-	if (*ptr == '.')
-	{
-		ptr++;
-		while (ft_isdigit(*ptr))
-			ptr++;
-	}
-	if (ft_strchr("cspdiuxX%", *ptr))
-		return (ptr);
-	else
-		return (0);
-}
-
-void	reverse_str(char *dest, int size, t_fm *fm)
-{
-	size_t	i;
-	char	buff;
-
-	i = 0;
-	while (i < size - i)
-	{
-		buff = dest[i];
-		dest[i] = dest[size - i - 1];
-		dest[size - i - 1] = buff;
-		i++;
-	}
-	if (fm -> zerominus != '-')
-	{
-		memmove(dest + ft_strlen(dest) - size, dest, size);
-		i = 0;
-		while (i < ft_strlen(dest) - size)
-		{
-			dest[i] = ' ';
-			i++;
-		}
-	}
-	return ;
-}
 
 static int	ft_digtoi(const char *nptr)
 {
@@ -80,7 +21,7 @@ static int	ft_digtoi(const char *nptr)
 	while (ft_isdigit(*nptr))
 	{
 		res = (res * 10) + *nptr - 48;
-			nptr++;
+		nptr++;
 	}
 	return (res);
 }
@@ -99,7 +40,7 @@ t_fm	*new_format(void)
 	return (new);
 }
 
-static void	get_formatII(const char *ptr, t_fm *fm)
+static void	get_format2(const char *ptr, t_fm *fm)
 {
 	fm -> width = ft_digtoi(ptr);
 	while (ft_isdigit(*ptr))
@@ -137,18 +78,6 @@ t_fm	*get_format(const char *ptr)
 			fm -> spaceplus = '+';
 		ptr++;
 	}
-	get_formatII(ptr, fm);
+	get_format2(ptr, fm);
 	return (fm);
 }
-/*
-#include <stdio.h>
-
-int main(void)
-{
-	char str[] = "#++--#0 345.34545s4%this";
-	t_fm fm = new_format();
-	get_fm(str, &fm);
-	printf("flags are: \"%d%0-10c%c\"; width is: %d; precision is %d;\nformat specifier is: %c", \
-	fm.alter, fm.zerominus, fm.spaceplus, fm.width, fm.precision, fm.format_spec);
-	return (0);
-}*/

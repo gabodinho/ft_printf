@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_aux1.c                                      :+:      :+:    :+:   */
+/*   printf_utils1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/20 16:51:14 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:19:35 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 int	rdec2hex(char *dest, long arg, char flag)
 {
 	int	i;
-	int dec;
-	int offset;
+	int	dec;
+	int	offset;
 
 	i = 0;
 	offset = 87;
@@ -36,7 +36,7 @@ int	rdec2hex(char *dest, long arg, char flag)
 	return (i);
 }
 
-char	*prep_str(size_t size, char	fill)
+char	*prep_str(size_t size, char fill)
 {
 	char			*ptr;
 	unsigned long	count;
@@ -58,28 +58,30 @@ int	free_len(char *str)
 {
 	size_t	len;
 
+	if (!str)
+		return (0);
 	len = ft_strlen(str);
 	free(str);
 	return (len);
 }
 
-size_t   ft_getdig(long n, int base)
+size_t	ft_getdig(long n, int base)
 {
-        unsigned long   digits;
+	unsigned long	digits;
 
-        if (n < 0)
-        {
-                digits = 2;
-                n = n * (-1);
-        }
-        else
-                digits = 1;
-        while (n / base > 0)
-        {
-                n = n / base;
-                digits++;
-        }
-        return (digits);
+	if (n < 0)
+	{
+		digits = 2;
+		n = n * (-1);
+	}
+	else
+		digits = 1;
+	while (n / base > 0)
+	{
+		n = n / base;
+		digits++;
+	}
+	return (digits);
 }
 
 int	add_prefix(char *dest, t_fm *fm, int sign)
@@ -101,7 +103,7 @@ int	add_prefix(char *dest, t_fm *fm, int sign)
 		else if (fm -> format_spec == 'X')
 			*dest = 'X';
 		*(dest + 1) = '0';
-	    return (2);
+		return (2);
 	}
 	else
 		return (0);

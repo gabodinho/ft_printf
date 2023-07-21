@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/20 13:22:05 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:04:28 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static int	get_size_hex(t_fm *fm, long arg, char flag)
 		return (fm -> width);
 }
 
-// modify this for ptr or create a new function?
 static int	get_zeros_hex(t_fm *fm, long arg)
 {
 	int	n_zeros;
@@ -51,16 +50,16 @@ static int	get_zeros_hex(t_fm *fm, long arg)
 static void	fill_hexstr(char *dest, long arg, t_fm *fm)
 {
 	int	i;
-	int n_zero;
+	int	n_zero;
 
 	n_zero = get_zeros_hex(fm, arg);
 	if (arg || fm -> precision)
 		i = rdec2hex(dest, arg, fm -> format_spec);
 	while (n_zero > 0)
 	{
-	        dest[i] = '0';
-	        i++;
-	        n_zero--;
+		dest[i] = '0';
+		i++;
+		n_zero--;
 	}
 	i += add_prefix(dest + i, fm, 2);
 	reverse_str(dest, i, fm);

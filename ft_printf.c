@@ -6,12 +6,36 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 22:51:58 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/20 18:30:45 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:19:53 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
+
+static int	put_char(char arg, int fd)
+{
+	write(fd, &arg, 1);
+	return (1);
+}
+
+static const char	*check_syntax(const char *ptr)
+{
+	while (ft_strchr("#0+- ", *ptr))
+		ptr++;
+	while (ft_isdigit(*ptr))
+		ptr++;
+	if (*ptr == '.')
+	{
+		ptr++;
+		while (ft_isdigit(*ptr))
+			ptr++;
+	}
+	if (ft_strchr("cspdiuxX%", *ptr))
+		return (ptr);
+	else
+		return (0);
+}
 
 static int	print_arg(va_list ap, t_fm *fm)
 {
@@ -36,9 +60,9 @@ static int	print_arg(va_list ap, t_fm *fm)
 		return (0);
 }
 
-int	ft_printf(const char* str, ...)
+int	ft_printf(const char *str, ...)
 {
-	int	res;
+	int		res;
 	va_list	ap;
 
 	res = 0;
@@ -57,10 +81,7 @@ int	ft_printf(const char* str, ...)
 			}
 		}
 		else
-		{
-			ft_putchar_fd(*str, 1);
-			res++;
-		}
+			res += put_char(*str, 1);
 		str++;
 	}
 	va_end(ap);

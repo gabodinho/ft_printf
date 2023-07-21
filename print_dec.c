@@ -6,29 +6,12 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/20 16:51:12 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:02:03 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
-
-static int	get_size(t_fm *fm, long arg, char flag)
-{
-	int	digits;
-
-	digits = ft_getdig(arg, 10);
-	if (fm -> precision > digits)
-		digits = fm -> precision;
-	if (arg >= 0 && fm -> spaceplus)
-		digits++;
-	if (!arg && !fm -> precision)
-		digits = 0;
-	if (digits > fm -> width || flag)
-		return (digits);
-	else
-		return (fm -> width);
-}
 
 static int	put_ruint(long arg, char *dest, t_fm *fm)
 {
@@ -77,14 +60,13 @@ static int	get_zeros(t_fm *fm, long arg)
 	return (n_zeros);
 }
 
-static void	fill_decstr(char *dest, long arg, t_fm *fm)
+void	fill_decstr(char *dest, long arg, t_fm *fm)
 {
 	int	i;
-	int sign;
-	int n_zero;
+	int	sign;
+	int	n_zero;
 
 	n_zero = get_zeros(fm, arg);
-//	printf("nzeros: %d", n_zero);
 	sign = 1;
 	if (arg < 0)
 		sign = -1;
@@ -100,15 +82,13 @@ static void	fill_decstr(char *dest, long arg, t_fm *fm)
 	return ;
 }
 
-// funktioniert auch für format_spec u
 int	print_dec(va_list ap, t_fm *fm)
 {
 	long	arg;
 	char	*str;
 
 	arg = va_arg(ap, int);
-	str = prep_str(get_size(fm, arg, 0), ' ');
-//	printf("size: %d, digits: %zu\n", get_size(fm, arg, 0), ft_getdig(arg, 10));
+	str = prep_str(get_size_dec(fm, arg, 0), ' ');
 	if (!str)
 		return (0);
 	fill_decstr(str, arg, fm);
@@ -122,13 +102,11 @@ int	print_u(va_list ap, t_fm *fm)
 	char			*str;
 
 	arg = va_arg(ap, unsigned int);
-//	printf("size: %d, digits: %zu\n", get_size(fm, arg, 0), ft_getdig(arg, 10));
 	fm -> spaceplus = 0;
-	str = prep_str(get_size(fm, arg, 0), ' ');
+	str = prep_str(get_size_dec(fm, arg, 0), ' ');
 	if (!str)
 		return (0);
 	fill_decstr(str, arg, fm);
 	ft_putstr_fd(str, 1);
 	return (free_len(str));
 }
-

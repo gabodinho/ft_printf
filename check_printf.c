@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 19:25:52 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/20 19:24:44 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:44:21 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void comp(int my, int og)
 
 int main()
 {
-	char format[] = "% s";
+	char format[] = "% 12u";
 	char *str = ft_strjoin("Format START:%", format);
-	char arg[] = "";
+	int arg = -15;
 
 //	ft_putstr_fd(str, 1);
 	printf(str);
@@ -53,15 +53,16 @@ int main()
     int b = printf(format, arg);
     comp(a, b);
 
-	char format2[] = "%12.7s";
+	char format2[] = "% #-+5.3u";
 	char *str2 = ft_strjoin("\nFormat START:%", format2);
 //	ft_putstr_fd(str, 1);
+	long arg2 = 999999999999;
 	printf(str2);
     printf("\nmy function START:");
 	fflush(stdout);
-    a = ft_printf(format2, 0);
+    a = ft_printf(format2, arg2);
     printf("\nog function START:");
-    b = printf(format2, 0);
+    b = printf(format2, arg2);
     comp(a, b);
 
 	return (0);
