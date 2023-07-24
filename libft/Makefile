@@ -6,7 +6,7 @@
 #    By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/20 18:33:58 by ggiertzu          #+#    #+#              #
-#    Updated: 2023/07/24 16:25:35 by ggiertzu         ###   ########.fr        #
+#    Updated: 2023/07/24 17:19:58 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,13 +32,13 @@ BNS_OBJS = $(BNS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(HEADER)
-	ar rcs $@ $^
+	ar rcs $@ $(OBJS)
 
 $(OBJS): %.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 bonus: $(OBJS) $(BNS_OBJS) $(HEADER)
-	ar rcs $(NAME) $^
+	ar rcs $(NAME) $(OBJS) $(BNS_OBS)
 
 $(BNS_OBJS): %.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@	

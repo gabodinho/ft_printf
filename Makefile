@@ -6,7 +6,7 @@
 #    By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/20 18:33:58 by ggiertzu          #+#    #+#              #
-#    Updated: 2023/07/24 15:04:14 by ggiertzu         ###   ########.fr        #
+#    Updated: 2023/07/24 17:16:26 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,9 @@ LIBFT = $(LIBFT_DIR)/libft.a
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	ar x $(LIBFT)
-	ar crs $@ *.o
+	cp $(LIBFT) .
+	mv libft.a $(NAME)
+	ar crs $@ $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -37,7 +38,7 @@ $(LIBFT):
 
 bonus: $(NAME)
 clean:
-	${RM} *.o
+	${RM} $(OBJS)
 	make clean -C $(LIBFT_DIR)
 fclean: clean
 	$(RM) $(NAME)
