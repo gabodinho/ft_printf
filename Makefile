@@ -6,17 +6,14 @@
 #    By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/20 18:33:58 by ggiertzu          #+#    #+#              #
-#    Updated: 2023/07/24 02:43:16 by ggiertzu         ###   ########.fr        #
+#    Updated: 2023/07/24 02:59:15 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-HEADER = ./libft/libft.h ./ft_printf.h
 CC = cc
 CFLAGS = -Werror -Wall -Wextra -I. -Ilibft
 MAKE = make -C
-LDFLAGS = -Llibft/
-LDLIBS = -lft
 RM = rm -f
 
 SRCS = print_dec.c  print_hex.c print_ptr.c printf_utils1.c \
@@ -32,8 +29,8 @@ $(NAME): $(OBJS) $(LIBFT)
 	ar x $(LIBFT)
 	ar crs $@ *.o
 
-%.o: %.c #$(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@ $(LDFLAGS) $(LDLIBS)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
 	$(MAKE) $(LIBFT_DIR)
