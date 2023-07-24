@@ -6,12 +6,12 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 22:51:58 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/21 18:19:53 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 01:14:29 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
+#include "./libft/libft.h"
 
 static int	put_char(char arg, int fd)
 {

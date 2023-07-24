@@ -6,11 +6,11 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:35:15 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/21 18:19:22 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 01:19:21 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./libft/libft.h"
 #include "ft_printf.h"
 
 static int	ft_digtoi(const char *nptr)

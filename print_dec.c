@@ -6,11 +6,11 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/21 17:02:03 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 01:17:52 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./libft/libft.h"
 #include "ft_printf.h"
 
 static int	put_ruint(long arg, char *dest, t_fm *fm)

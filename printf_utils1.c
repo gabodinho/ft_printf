@@ -6,11 +6,11 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/21 18:19:35 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 01:18:48 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./libft/libft.h"
 #include "ft_printf.h"
 
 int	rdec2hex(char *dest, long arg, char flag)
