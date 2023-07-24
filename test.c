@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 18:26:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 21:57:21 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 22:52:21 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int main(void)
 	char *str = ft_strjoin("%", format);
 //	printf("%%.x, %%.0x\n");
 	printf("og:");
-	og = printf("%00065.197d%132p%-%%-173.71i%--1.32i" ,-699619784,(void*)4809237208452777030lu,366715426,-130141062);
+	og = printf("%------21p yeah i'm %p running out %--p of ideas", (void *) 13, (void *) 65, (void *) -1);
 	printf("END");
 	printf("\nmy:");
 	fflush(stdout);
-	res = ft_printf("%00065.197d%132p%-%%-173.71i%--1.32i" ,-699619784,(void*)4809237208452777030lu,366715426,-130141062);
+	res = ft_printf("%------21p yeah i'm %p running out %--p of ideas", (void *) 13, (void *) 65, (void *) -1);
 	printf("END");
 	if (res != og)
 		printf("\nERROR");
