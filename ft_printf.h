@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:44:13 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 01:13:16 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:57:25 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_fm
 	char	spaceplus;
 }	t_fm;
 
-size_t		ft_getdig(long n, int base);
+size_t		ft_getdig(long long n, int base);
 int			get_size_dec(t_fm *fm, long arg, char flag);
 int			add_prefix(char *dest, t_fm *fm, int sign);
 void		reverse_str(char *dest, int size, t_fm *fm);
@@ -41,9 +41,9 @@ t_fm		*new_format(void);
 t_fm		*get_format(const char *ptr);
 const char	*shift_ptr(const char *ptr);
 char		*prep_str(size_t size, char fill);
-int			free_len(char *str);
+int			free_len(char *str, t_fm *fm);
 void		fill_decstr(char *dest, long arg, t_fm *fm);
-int			rdec2hex(char *dest, long arg, char flag);
+long		rdec2hex(char *dest, unsigned long arg, char flag);
 int			print_char(va_list ap, t_fm *fm);
 int			print_dec(va_list ap, t_fm *fm);
 int			print_str(va_list ap, t_fm *fm);

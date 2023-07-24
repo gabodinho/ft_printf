@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 00:11:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 01:16:56 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:00:24 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	print_str(va_list ap, t_fm *fm)
 	}
 	str = fill_strstr(arg, fm);
 	ft_putstr_fd(str, 1);
-	return (free_len(str));
+	return (free_len(str, fm));
 }
 
 int	print_char(va_list ap, t_fm *fm)
@@ -82,5 +82,6 @@ int	print_char(va_list ap, t_fm *fm)
 		str[fm -> width - 1] = arg;
 	write(1, str, fm -> width);
 	free(str);
+	free(fm);
 	return (fm -> width);
 }

@@ -6,14 +6,13 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 01:18:15 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:00:39 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include "ft_printf.h"
 
-// currently under construction
 static int	get_size_hex(t_fm *fm, long arg, char flag)
 {
 	int	digits;
@@ -23,6 +22,8 @@ static int	get_size_hex(t_fm *fm, long arg, char flag)
 		digits = fm -> precision;
 	if (fm -> alter)
 		digits += 2;
+	if (!arg && !fm -> precision)
+		digits = 0;
 	if (digits > fm -> width || flag)
 		return (digits);
 	else
@@ -79,5 +80,5 @@ int	print_hex(va_list ap, t_fm *fm)
 		return (-1);
 	fill_hexstr(str, arg, fm);
 	ft_putstr_fd(str, 1);
-	return (free_len(str));
+	return (free_len(str, fm));
 }

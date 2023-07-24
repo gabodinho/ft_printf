@@ -6,18 +6,18 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 01:18:48 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:02:28 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include "ft_printf.h"
 
-int	rdec2hex(char *dest, long arg, char flag)
+long	rdec2hex(char *dest, unsigned long arg, char flag)
 {
-	int	i;
-	int	dec;
-	int	offset;
+	long	i;
+	long	dec;
+	int		offset;
 
 	i = 0;
 	offset = 87;
@@ -54,7 +54,7 @@ char	*prep_str(size_t size, char fill)
 	return (ptr);
 }
 
-int	free_len(char *str)
+int	free_len(char *str, t_fm *fm)
 {
 	size_t	len;
 
@@ -62,10 +62,11 @@ int	free_len(char *str)
 		return (0);
 	len = ft_strlen(str);
 	free(str);
+	free(fm);
 	return (len);
 }
 
-size_t	ft_getdig(long n, int base)
+size_t	ft_getdig(long long n, int base)
 {
 	unsigned long	digits;
 

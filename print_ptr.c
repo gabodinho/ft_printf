@@ -6,14 +6,14 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 01:16:42 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:06:09 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include "ft_printf.h"
 
-static int	get_size_ptr(t_fm *fm, long arg, char flag)
+static int	get_size_ptr(t_fm *fm, long long arg, char flag)
 {
 	int	digits;
 
@@ -31,7 +31,7 @@ static int	get_size_ptr(t_fm *fm, long arg, char flag)
 		return (fm -> width);
 }
 
-static int	get_zeros_ptr(t_fm *fm, long arg)
+static int	get_zeros_ptr(t_fm *fm, long long arg)
 {
 	int	n_zeros;
 	int	digits;
@@ -49,7 +49,7 @@ static int	get_zeros_ptr(t_fm *fm, long arg)
 	return (n_zeros);
 }
 
-static void	fill_ptrstr(char *dest, long arg, t_fm *fm)
+static void	fill_ptrstr(char *dest, long long arg, t_fm *fm)
 {
 	int	i;
 	int	n_zero;
@@ -78,14 +78,14 @@ static void	fill_ptrstr(char *dest, long arg, t_fm *fm)
 
 int	print_ptr(va_list ap, t_fm *fm)
 {
-	uintptr_t	arg;
-	char		*str;
+	unsigned long	arg;
+	char			*str;
 
-	arg = va_arg(ap, uintptr_t);
+	arg = va_arg(ap, unsigned long);
 	str = prep_str(get_size_ptr(fm, arg, 0), ' ');
 	if (!str)
 		return (-1);
 	fill_ptrstr(str, arg, fm);
 	ft_putstr_fd(str, 1);
-	return (free_len(str));
+	return (free_len(str, fm));
 }
