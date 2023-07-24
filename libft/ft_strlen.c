@@ -6,7 +6,7 @@
 /*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:41:48 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/05/09 18:03:04 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 22:11:45 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@ size_t	ft_strlen(const char *s)
 	unsigned long	n;
 
 	n = 0;
-	while (*s != '\0')
-	{
+	while (s[n])
 		n++;
-		s++;
-	}
 	return (n);
 }
 /*

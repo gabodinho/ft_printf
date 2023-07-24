@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 15:02:28 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 22:14:52 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ long	rdec2hex(char *dest, unsigned long arg, char flag)
 	return (i);
 }
 
-char	*prep_str(size_t size, char fill)
+char	*prep_str(size_t size)
 {
 	char			*ptr;
 	unsigned long	count;
@@ -44,25 +44,25 @@ char	*prep_str(size_t size, char fill)
 	ptr = malloc(sizeof(char) * (size + 1));
 	if (!ptr)
 		return (0);
-	ptr[size] = 0;
 	count = 0;
 	while (count < size)
 	{
-		ptr[count] = fill;
+		ptr[count] = ' ';
 		count++;
 	}
+	ptr[count] = 0;
 	return (ptr);
 }
 
-int	free_len(char *str, t_fm *fm)
+int	free_len(char *str)
 {
 	size_t	len;
 
 	if (!str)
-		return (0);
-	len = ft_strlen(str);
+		len = 0;
+	else
+		len = ft_strlen(str);
 	free(str);
-	free(fm);
 	return (len);
 }
 

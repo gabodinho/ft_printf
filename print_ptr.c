@@ -6,14 +6,14 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 15:06:09 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 21:24:51 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include "ft_printf.h"
 
-static int	get_size_ptr(t_fm *fm, long long arg, char flag)
+static int	get_size_ptr(t_fm *fm, long long arg, int flag)
 {
 	int	digits;
 
@@ -82,10 +82,10 @@ int	print_ptr(va_list ap, t_fm *fm)
 	char			*str;
 
 	arg = va_arg(ap, unsigned long);
-	str = prep_str(get_size_ptr(fm, arg, 0), ' ');
+	str = prep_str(get_size_ptr(fm, arg, 0));
 	if (!str)
-		return (-1);
+		return (0);
 	fill_ptrstr(str, arg, fm);
 	ft_putstr_fd(str, 1);
-	return (free_len(str, fm));
+	return (free_len(str));
 }

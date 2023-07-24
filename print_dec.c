@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 15:00:55 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 22:43:03 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	put_ruint(long arg, char *dest, t_fm *fm)
 	int	i;
 
 	i = 0;
-	if (arg == 0 && !fm -> precision)
+	if (!arg && !fm -> precision)
 		return (0);
 	else if (arg == 0)
 	{
@@ -88,12 +88,12 @@ int	print_dec(va_list ap, t_fm *fm)
 	char	*str;
 
 	arg = va_arg(ap, int);
-	str = prep_str(get_size_dec(fm, arg, 0), ' ');
+	str = prep_str(get_size_dec(fm, arg, 0));
 	if (!str)
 		return (0);
 	fill_decstr(str, arg, fm);
 	ft_putstr_fd(str, 1);
-	return (free_len(str, fm));
+	return (free_len(str));
 }
 
 int	print_u(va_list ap, t_fm *fm)
@@ -103,10 +103,10 @@ int	print_u(va_list ap, t_fm *fm)
 
 	arg = va_arg(ap, unsigned int);
 	fm -> spaceplus = 0;
-	str = prep_str(get_size_dec(fm, arg, 0), ' ');
+	str = prep_str(get_size_dec(fm, arg, 0));
 	if (!str)
 		return (0);
 	fill_decstr(str, arg, fm);
 	ft_putstr_fd(str, 1);
-	return (free_len(str, fm));
+	return (free_len(str));
 }

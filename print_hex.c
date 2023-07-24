@@ -6,14 +6,14 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 15:00:39 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 21:24:28 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include "ft_printf.h"
 
-static int	get_size_hex(t_fm *fm, long arg, char flag)
+static int	get_size_hex(t_fm *fm, long arg, int flag)
 {
 	int	digits;
 
@@ -75,10 +75,10 @@ int	print_hex(va_list ap, t_fm *fm)
 	arg = va_arg(ap, unsigned int);
 	if (!arg)
 		fm -> alter = 0;
-	str = prep_str(get_size_hex(fm, arg, 0), ' ');
+	str = prep_str(get_size_hex(fm, arg, 0));
 	if (!str)
-		return (-1);
+		return (0);
 	fill_hexstr(str, arg, fm);
 	ft_putstr_fd(str, 1);
-	return (free_len(str, fm));
+	return (free_len(str));
 }

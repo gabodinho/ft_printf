@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 00:11:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 15:00:24 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 22:43:33 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*fill_strstr(const char *arg, t_fm *fm)
 
 	buf_len = get_size_str(fm, arg, 0);
 	prt_len = get_size_str(fm, arg, 1);
-	str = prep_str(buf_len, ' ');
+	str = prep_str(buf_len);
 	if (!str)
 		return (0);
 	if (fm -> zerominus == '-')
@@ -58,22 +58,23 @@ int	print_str(va_list ap, t_fm *fm)
 			arg = "";
 		}
 		else
-			arg = ft_strdup("(null)");
+			arg = "(null)";
 	}
 	str = fill_strstr(arg, fm);
 	ft_putstr_fd(str, 1);
-	return (free_len(str, fm));
+	return (free_len(str));
 }
 
 int	print_char(va_list ap, t_fm *fm)
 {
 	unsigned char	arg;
 	char			*str;
+	int				ret;
 
 	arg = (unsigned char) va_arg(ap, int);
 	if (fm -> width == 0)
 		fm -> width = 1;
-	str = prep_str(fm -> width, ' ');
+	str = prep_str(fm -> width);
 	if (!str)
 		return (0);
 	if (fm -> zerominus == '-')
@@ -81,7 +82,7 @@ int	print_char(va_list ap, t_fm *fm)
 	else
 		str[fm -> width - 1] = arg;
 	write(1, str, fm -> width);
+	ret = fm -> width;
 	free(str);
-	free(fm);
-	return (fm -> width);
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 22:51:58 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 01:14:29 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/24 21:43:01 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,21 @@ static const char	*check_syntax(const char *ptr)
 		return (0);
 }
 
-static int	print_arg(va_list ap, t_fm *fm)
+static int	print_arg(va_list ap, t_fm fm)
 {
-	if (ft_strchr("di", fm -> format_spec))
-		return (print_dec(ap, fm));
-	if (fm -> format_spec == 'u')
-		return (print_u(ap, fm));
-	if (fm -> format_spec == 'c')
-		return (print_char(ap, fm));
-	if (fm -> format_spec == 's')
-		return (print_str(ap, fm));
-	if (ft_strchr("xX", fm -> format_spec))
-		return (print_hex(ap, fm));
-	if (fm -> format_spec == 'p')
-		return (print_ptr(ap, fm));
-	if (fm -> format_spec == '%')
+	if (ft_strchr("di", fm.format_spec))
+		return (print_dec(ap, &fm));
+	if (fm.format_spec == 'u')
+		return (print_u(ap, &fm));
+	if (fm.format_spec == 'c')
+		return (print_char(ap, &fm));
+	if (fm.format_spec == 's')
+		return (print_str(ap, &fm));
+	if (ft_strchr("xX", fm.format_spec))
+		return (print_hex(ap, &fm));
+	if (fm.format_spec == 'p')
+		return (print_ptr(ap, &fm));
+	if (fm.format_spec == '%')
 	{
 		ft_putchar_fd('%', 1);
 		return (1);
