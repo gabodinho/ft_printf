@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 21:24:28 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:17:38 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	fill_hexstr(char *dest, long arg, t_fm *fm)
 	int	i;
 	int	n_zero;
 
+	i = 0;
 	n_zero = get_zeros_hex(fm, arg);
 	if (arg || fm -> precision)
 		i = rdec2hex(dest, arg, fm -> format_spec);
@@ -73,9 +74,15 @@ int	print_hex(va_list ap, t_fm *fm)
 	char			*str;
 
 	arg = va_arg(ap, unsigned int);
+	printf("arg is:%d", arg);
 	if (!arg)
+	{
 		fm -> alter = 0;
+		printf("true");
+	}
+	fflush(stdout);
 	str = prep_str(get_size_hex(fm, arg, 0));
+//	printf("len str is: %ld", ft_strlen(str));
 	if (!str)
 		return (0);
 	fill_hexstr(str, arg, fm);
