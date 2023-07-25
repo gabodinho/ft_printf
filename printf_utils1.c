@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 22:52:58 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:54:28 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ size_t	ft_getdig(long long n, int base)
 {
 	unsigned long	digits;
 
+	if (base == 16)
+		n = (unsigned long) n;
+//	printf("getdig:%ld", n);
 	if (n < 0)
 	{
 		digits = 2;

@@ -6,21 +6,21 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 22:52:51 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:11:06 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include "ft_printf.h"
 
-static int	get_size_ptr(t_fm *fm, long long arg, int flag)
+static int	get_size_ptr(t_fm *fm, unsigned long arg, int flag)
 {
 	int	digits;
 
 	if (!arg)
 		digits = 5;
 	else
-		digits = ft_getdig(arg, 16) + 2;
+		digits = ft_getdig_hex(arg) + 2;
 	if (fm -> precision > digits)
 		digits = fm -> precision;
 	if (fm -> spaceplus && arg)
@@ -31,15 +31,15 @@ static int	get_size_ptr(t_fm *fm, long long arg, int flag)
 		return (fm -> width);
 }
 
-static int	get_zeros_ptr(t_fm *fm, long long arg)
+static int	get_zeros_ptr(t_fm *fm, unsigned long arg)
 {
 	int	n_zeros;
 	int	digits;
 
-	digits = ft_getdig(arg, 16) + 2;
+	digits = ft_getdig_hex(arg) + 2;
 	n_zeros = 0;
 	if (fm -> precision > digits)
-		n_zeros = get_size_ptr(fm, arg, '1') - digits;
+		n_zeros = get_size_ptr(fm, arg, 1) - digits;
 	else if (fm -> zerominus == '0' && fm -> precision == -1)
 		n_zeros = get_size_ptr(fm, arg, 0) - digits;
 	if (fm -> spaceplus)
@@ -49,7 +49,7 @@ static int	get_zeros_ptr(t_fm *fm, long long arg)
 	return (n_zeros);
 }
 
-static void	fill_ptrstr(char *dest, long long arg, t_fm *fm)
+static void	fill_ptrstr(char *dest, unsigned long arg, t_fm *fm)
 {
 	int	i;
 	int	n_zero;
@@ -82,7 +82,10 @@ int	print_ptr(va_list ap, t_fm *fm)
 	char			*str;
 
 	arg = va_arg(ap, unsigned long);
+//	printf("arg is:%lu, size is:%d", arg, get_size_ptr(fm, arg, 0));
 	str = prep_str(get_size_ptr(fm, arg, 0));
+//	printf("len str is: %ld", ft_strlen(str));
+//	fflush(stdout);
 	if (!str)
 		return (0);
 	fill_ptrstr(str, arg, fm);

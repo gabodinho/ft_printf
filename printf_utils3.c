@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 22:52:54 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:04:11 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,17 @@ void	reverse_str(char *dest, int size, t_fm *fm)
 	}
 	return ;
 }
+
+size_t	ft_getdig_hex(unsigned long n)
+{
+	unsigned long	digits;
+
+	digits = 1;
+	while (n / 16 > 0)
+	{
+		n = n / 16;
+		digits++;
+	}
+	return (digits);
+}
+

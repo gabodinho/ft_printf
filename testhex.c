@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 18:26:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/25 12:55:45 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:25:50 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int main(void)
 	char *str = ft_strjoin("%", format);
 //	printf("%%.x, %%.0x\n");
 	printf("og:");
-	og = printf("%.0xis a big number", 0);
+	og = printf("This %-p is even stranger", (void *)-1);
 	printf("END");
 	printf("\nmy:");
 	fflush(stdout);
-	res = ft_printf("%.0xis a big number", 0);
+	res = ft_printf("This %-p is even stranger", (void *)-1);
 	printf("END");
 	if (res != og)
 		printf("\nERROR");
