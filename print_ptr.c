@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/25 14:11:06 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/26 09:54:47 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,7 @@ int	print_ptr(va_list ap, t_fm *fm)
 	char			*str;
 
 	arg = va_arg(ap, unsigned long);
-//	printf("arg is:%lu, size is:%d", arg, get_size_ptr(fm, arg, 0));
 	str = prep_str(get_size_ptr(fm, arg, 0));
-//	printf("len str is: %ld", ft_strlen(str));
-//	fflush(stdout);
 	if (!str)
 		return (0);
 	fill_ptrstr(str, arg, fm);

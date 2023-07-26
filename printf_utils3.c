@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/25 14:04:11 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/07/26 09:53:20 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,3 @@ size_t	ft_getdig_hex(unsigned long n)
 	}
 	return (digits);
 }
-
