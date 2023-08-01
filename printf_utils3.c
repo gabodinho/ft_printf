@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/26 09:53:20 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:57:02 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	get_size_dec(t_fm *fm, long arg, char flag)
 	int	digits;
 
 	digits = ft_getdig(arg, 10);
-	if (fm -> precision > digits)
+	if (fm -> precision >= digits)
 	{
 		digits = fm -> precision;
 		if (arg < 0)

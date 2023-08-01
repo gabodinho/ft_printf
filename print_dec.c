@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:40:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/07/24 22:43:03 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:53:15 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	fill_decstr(char *dest, long arg, t_fm *fm)
 		n_zero--;
 	}
 	i += add_prefix(dest + i, fm, sign);
+//	printf("i: %d, size: %d, zeros: %d, getdig: %zu\n", i, get_size_dec(fm, arg, 0), get_zeros(fm, arg), ft_getdig(arg, 10));
 	reverse_str(dest, i, fm);
 	return ;
 }
